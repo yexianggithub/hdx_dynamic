@@ -6,14 +6,26 @@ Diffusion Model used in Fig.4D of Ye, X. et.al. PNAS 2019
 
 import math
 import numpy as np
+import sys
 
 ##Simulation Part:
-
-M = 100 #number of simulating molecules
-p_num = 6 #number of protomers per oligomer
-k_df = 0.0015 #the Special Subunit Diffusion Rate (1/sec)
-k_hx = 10 #the HX rate of the Special Subunit (1/sec) 
-totalTime = 1000 #the total simulation time (sec) 
+print ("input arguments in the following order: Number of molecules for simulation,\
+Number of protomers per oligomer, Oligomer dissociation into protomers, \
+HDX rate on unprotected protomer, Total simulation time (in seconds)")
+if len(sys.argv) == 1:
+   M = 100 #number of simulating molecules
+   p_num = 6 #number of protomers per oligomer
+   k_df = 0.0015 #the Special Subunit Diffusion Rate (1/sec)
+   k_hx = 10 #the HX rate of the Special Subunit (1/sec) 
+   totalTime = 1000 #the total simulation time (sec) 
+elif len(sys.argv) >= 6:
+   M = int(sys.argv[1])
+   p_num = int(sys.argv[2])
+   k_df = float(sys.argv[3])
+   k_hx = float(sys.argv[4])
+   totalTime = float(sys.argv[5])
+else:
+   print ("Incomplete inputs") 
 
 #calculate step time of simulation:
 kmax=max(k_df, k_hx)
@@ -64,7 +76,7 @@ plt.xlabel('Simulation Time (sec)')
 plt.ylabel('Fraction of HX Labeled')
 plt.title('Random Model Simulation. Dissamble Rate={}, HX Rate={}'.format(k_df,k_hx))
 plt.grid()
-
+plt.show()
 
 
 

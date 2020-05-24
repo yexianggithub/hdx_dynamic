@@ -82,12 +82,16 @@ class Oligomer_Simulation:
         plt.ylabel('Fraction of HX Labeled')
         plt.title('Random Model Simulation. Dissamble Rate={}, HX Rate={}'.format(self.k_df,self.k_hx))
         plt.grid()
+        plt.show()
         
 # Simulation example
 if __name__=='__main__':    
-    
-    simu_Obj=Oligomer_Simulation(num_mol=100,num_protomer=6,k_diffuse=0.0015,k_HX=10,simu_time=1000)
+    num_mol=input("Number of molecules for simulation:")
+    num_protomer=input("Number of protomers per oligomer:")
+    k_diffuse=input("Rate of oligomer dissociation into protomers:")
+    k_HX=input("unprotected HDX rate:")
+    simu_time=input("Duration of simulation (in seconds):")
+    simu_Obj=Oligomer_Simulation(num_mol,num_protomer,k_diffuse,k_HX,simu_time)
     simu_Obj.perform_simu()
     simu_Obj.plot_results()
-    
         
